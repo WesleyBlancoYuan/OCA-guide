@@ -1,0 +1,37 @@
+How to compile class at different level
+
+
+classpath is a pain in the ass. You must include all the class imported in this class, and
+considering that Java loads class with import declaration, you must specify the root folder as the classpath.
+
+For example, if you have:
+
+    com
+      |
+      - Chair.java
+      - Launcher.java
+      - office
+             |
+             - OfficeChair.java
+
+
+And OfficeChair extends Chair, so it has:
+
+    package com.office;
+
+    import com.Chair;
+
+When you compile OfficeChair.java at office folder, you must specify the classpath like:
+
+    javac -cp ../.. OfficeChair.java
+
+../.. is to go back to parent folder twice, to the folder where com is located. Then javac can find Chair, because javac compiler will find classes according to import statement from the classpaths. So, it will look for com.office from ../.., that is, where com is located. So, it can find classes.
+
+If we define in all classes the import part like: com.xxx.xxx, this is good because it allows us to configure classpath once and for all classes: what we need to do is to add where com is, and all the classes can be found. We don't need to add to classpath every class's path.
+
+--------------------------------------
+
+Classes defined in the default package, can be used in other classes in the same level, but cannot be used with classes in levels inferiores, because "import" cannot import default package. You cannot write "import ;" or "import Ether;", so it cannot be imported.
+
+
+
