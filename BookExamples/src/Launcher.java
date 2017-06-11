@@ -1,7 +1,7 @@
 
 import com.office.OfficeChair;
 import com.home.Bedroom;
-
+static import com.Chair.height;
 class Launcher {
     static public void main(String ags[]) {
         Bedroom b = new Bedroom();
